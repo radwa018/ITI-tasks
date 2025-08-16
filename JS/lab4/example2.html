@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Merge Arrays</title>
+</head>
+<body>
+  <h3>Merge Two Arrays and Remove Duplicates</h3>
+  
+  <input type="text" id="arr1" placeholder="Enter numbers like 1,6,5,9">
+  <br><br>
+  <input type="text" id="arr2" placeholder="Enter numbers like 5,6,3,1,9">
+  <br><br>
+  <button onclick="mergeArrays()">Merge</button>
+  
+  <h4>Result:</h4>
+  <p id="result"></p>
+
+  <script>
+    function mergeArrays() {
+      var arr1 = document.getElementById("arr1").value.split(",");
+      var arr2 = document.getElementById("arr2").value.split(",");
+      var merged = arr1.concat(arr2);
+      var unique = [];
+
+      for (var i = 0; i < merged.length; i++) {
+        if (unique.indexOf(merged[i]) === -1) {
+          unique.push(merged[i]);
+        }
+      }
+
+      document.getElementById("result").innerHTML = unique.join(", ");
+    }
+  </script>
+</body>
+</html>

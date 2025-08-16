@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+  <style>
+    .done { color: green; text-decoration: line-through; }
+    .task { margin: 5px 0; }
+    button { margin-left: 5px; }
+  </style>
+</head>
+<body>
+  <h3>Todo List</h3>
+  
+  <input type="text" id="taskInput" placeholder="Enter task">
+  <button onclick="addTask()">Add</button>
+  
+  <ul id="taskList"></ul>
+
+  <script>
+    var tasks = [];
+
+    function addTask() {
+      var taskName = document.getElementById("taskInput").value;
+      if (taskName === "") return;
+
+      var task = { name: taskName, status: "pending" };
+      tasks.push(task);
+      document.getElementById("taskInput").value = "";
+      displayTasks();
+    }
+
+    function markDone(index) {
+      tasks[index].status = "done";
+      displayTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      displayTasks();
+    }
+
+    function displayTasks() {
+      var list = document.getElementById("taskList");
+      list.innerHTML = "";
+
+      for (var i = 0; i < tasks.length; i++) {
+        var li = document.createElement("li");
+        li.className = "task";
+        
+        if (tasks[i].status === "done") {
+          li.classList.add("done");
+        }
+
+        li.innerHTML = tasks[i].name +
+          ' <button onclick="markDone(' + i + ')">✔</button>' +
+          ' <button onclick="deleteTask(' + i + ')">✖</button>';
+        
+        list.appendChild(li);
+      }
+    }
+  </script>
+</body>
+</html>

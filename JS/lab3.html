@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab3</title>
+</head>
+<body>
+    <script>
+        //1
+        let car = {
+            brand: "Toyota",
+            model: "Corolla",
+            year: 2020,
+            display: function() {
+              console.log("Brand:", this.brand, "Model:", this.model, "Year:", this.year);
+            }
+          };
+          car.display();
+        //2
+        for (let key in car) {
+            console.log(key + ":", car[key]);
+          }
+        //3
+        function swapKeysValues(obj) {
+            let newObj = {};
+            for (let key in obj) {
+              newObj[obj[key]] = key;
+            }
+            return newObj;
+          }
+          
+          let swapped = swapKeysValues({a: 1, b: 2});
+          console.log(swapped); 
+        //4
+        let obj1 = {a: 1, b: 2};
+        let obj2 = {b: 3, c: 4};
+        let merged = {};
+
+        for (let key in obj1) merged[key] = obj1[key];
+        for (let key in obj2) {
+        if (merged.hasOwnProperty(key)) {
+            merged[key + "_1"] = obj2[key];
+        } else {
+            merged[key] = obj2[key];
+        }
+        }
+        console.log(merged); 
+        //5
+        let person = {
+            name: "Ali",
+            address: {
+            city: "Cairo",
+            street: "Tahrir"
+            },
+            job: {
+            title: "Developer",
+            company: "TechCorp"
+            },
+            display: function() {
+            console.log(this.name, this.address.city, this.address.street, this.job.title, this.job.company);
+            }
+        };
+        
+        person.display();
+        //6
+        let people = [
+        {name: "Sara", age: 30},
+        {name: "Omar", age: 20},
+        {name: "Ali", age: 40}
+        ];
+
+        people.sort((a, b) => a.age - b.age);
+        console.log(people);
+        //7
+        let numbers = [3, 7, 1, 9, 5];
+        let max = Math.max(...numbers);
+        let min = Math.min(...numbers);
+        console.log("Max:", max, "Min:", min);
+        //8
+        let arr = [1, 2, 3, 4, 5];
+        let reversed = [];
+        for (let i = arr.length - 1; i >= 0; i--) {
+        reversed.push(arr[i]);
+        }
+        console.log(reversed);
+
+        //9
+        let num1 = Number(prompt("Enter first number:"));
+        let operation = prompt("Enter operation (sum, multi, subtract, division):");
+        let num2 = Number(prompt("Enter second number:"));
+        let result;
+
+        if (operation === "sum") result = num1 + num2;
+        else if (operation === "multi") result = num1 * num2;
+        else if (operation === "subtract") result = num1 - num2;
+        else if (operation === "division") result = num1 / num2;
+        else result = "Invalid operation";
+
+        alert("Result: " + result);
+        //10
+        let username = prompt("Enter username:");
+        let password = prompt("Enter password:");
+
+        if (username === "admin" && password === "421$$") {
+        alert("Welcome login success");
+        } else {
+        if (username !== "admin" && password !== "421$$") {
+            alert("Both username and password are wrong");
+        } else if (username !== "admin") {
+            alert("Username is wrong");
+        } else {
+            alert("Password is wrong");
+        }
+        }
+        //11
+        function getRandom() {
+            return Math.floor(Math.random() * 10); // 0-9
+          }
+          
+          let userGuess = Number(prompt("Guess a number between 0 and 9:"));
+          let randomNum = getRandom();
+          
+          if (userGuess === randomNum) {
+            alert("You guessed the correct number!");
+          } else {
+            alert("Wrong! The number was " + randomNum);
+          }
+        //12
+        let products = [
+        {name: "Phone", price: 1000},
+        {name: "Laptop", price: 2000}
+        ];
+        
+        let discounted = products.map(p => ({
+            ...p,
+            discountedPrice: p.price * 0.9
+        }));
+        
+        console.log(discounted);
+        //13
+        function checkDateFormat(dateStr) {
+            if (dateStr.length === 10 && dateStr[2] === "-" && dateStr[5] === "-") {
+              let day = dateStr.substring(0, 2);
+              let month = dateStr.substring(3, 5);
+              let year = dateStr.substring(6, 10);
+              let d = new Date(year, month - 1, day);
+              alert(d.toDateString());
+            } else {
+              alert("Wrong Date Format");
+            }
+          }
+          
+          let userDate = prompt("Enter your birth date (DD-MM-YYYY):");
+          checkDateFormat(userDate);
+        //14
+        function getDayName(dateStr) {
+            let d = new Date(dateStr);
+            let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            return days[d.getDay()];
+          }
+          
+          console.log(getDayName("2025-08-16"));
+        //15
+        let contacts = [];
+        let operationn;
+
+        while (true) {
+        operationn = prompt("Enter operation (add, search, exit):");
+        if (operationn === "exit" || operationn === null) break;
+
+        if (operationn === "add") {
+            let name = prompt("Enter contact name:");
+            let phone = prompt("Enter phone number:");
+            contacts.push({name: name, phone: phone});
+        } else if (operationn === "search") {
+            let query = prompt("Enter name or phone to search:");
+            let found = contacts.find(c => c.name === query || c.phone === query);
+            if (found) {
+            alert("Name: " + found.name + " Phone: " + found.phone);
+            } else {
+            alert("Contact not found");
+            }
+        } else {
+            alert("Invalid operation");
+        }
+        }
+        
+      
+    </script>
+</body>
+</html>

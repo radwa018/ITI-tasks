@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab2</title>
+</head>
+<body>
+    <script>
+        //1
+        let num=Number(prompt("Enter a number:"));
+        if(num>0){
+            console.log("positive");
+        }else if(num<0){
+            console.log("negative");
+        }else{
+            console.log("zero");
+        }
+        //2
+        let proceed = confirm("do you need to proceed?");
+        if(proceed){
+            alert("you chose to proceed");
+        }else{
+            alert("action canceled");
+        }
+        //3
+        var num2=10;
+        (num2%2===0)?console.log("hi"):console.log("heloo");
+        //4
+        let age;
+        while(true){
+            age=prompt("enter your age:");
+            if (age ===null) break;
+            age = Number(age);
+
+            if (age <=0|| isNaN(age)){
+                alert("enter a positive number");
+            }else if(age >=1 && age<=10){
+                alert("child");
+            }else if(age>=11 && age<=18){
+                alert("teenager");
+            }else if(age >=19 && age <=50){
+                alert("grown up");
+            }else{
+                alert("old")
+            }
+        }
+        //5
+        let str = prompt("enter a string");
+        let vowels={a:0,e:0,i:0,o:0,u:0}
+        for (let char of str.toLowerCase()){
+            if(vowels.hasOwnProperty(char)){
+                vowels[char]++
+            }
+        }
+        console.log(vowels);
+        //6
+        let hour=Number(prompt("enter an hour(0-23)"));
+        let suffix = hour>=12 ?"PM" : "AM";
+        let hour12 = hour%12;
+        if(hour12===0) hour12=12;
+        alert(hour12+suffix);
+        //7
+        let text = prompt("enter a string:");
+        let result=text.charAt(0).toUpperCase()+text.slice(1);
+        alert(result);
+        //8
+        let color = prompt("Enter your favorite color:");
+            if (confirm("You chose " + color + ". Is that correct?")) {
+            alert("Great choice!");
+            } else {
+            alert("Let's try again.");
+            }
+            //9
+            const correctPassword = "12345";
+            let input;
+            while (input !== correctPassword) {
+            input = prompt("Enter the password:");
+            if (input === null) break; 
+            }
+            if (input === correctPassword) alert("Access granted!");
+            //10
+            let date1 = new Date("2024-01-01");
+            let date2 = new Date("2025-01-01");
+
+            if (date1 < date2) {
+            console.log("date1 is earlier");
+            } else if (date1 > date2) {
+            console.log("date1 is later");
+            } else {
+            console.log("dates are equal");
+            }
+            //11
+            let d1 = new Date("2025-01-01");
+            let d2 = new Date("2025-08-16");
+            let diffTime = Math.abs(d2 - d1); 
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            console.log("Days between:", diffDays);
+            //12
+            let sumEven = 0;
+            for (let i = 1; i <= 100; i++) {
+            if (i % 2 === 0) sumEven += i;
+            }
+            console.log("Sum of even numbers:", sumEven);
+            //13
+            let str2 = "Hello World!";
+            let sub = str2.substring(6, 11);
+            console.log(sub);
+            //14
+            let num2 = 5.678;
+            console.log(num2.toFixed(2)); // "5.68"
+            //15
+            let num3 = Number(prompt("Enter a number:"));
+            if (num3 % 3 === 0 && num3 % 5 === 0) {
+            console.log(true);
+            } else {
+            console.log(false);
+            }
+
+
+    </script>
+</body>
+</html>

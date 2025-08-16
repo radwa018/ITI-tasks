@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java-script</title>
+</head>
+<body>
+    <script>
+        //1
+        let name="radwa";
+        console.log(name);
+        //2
+        let x=10;
+        let y =20;
+        let sum = x+y;
+        console.log("the sum is :",sum);
+        //3
+        let city;
+        console.log("before assignment",city);
+        city = "cairo";
+        console.log("after assignment:",city);
+        //4
+        alert("welcome to our website!");
+        //5
+        let response = confirm("are you sure you want to delete this item?");
+        console.log("user response:",response);
+        //6
+        let first_name=prompt("Enter your first name:");
+        let last_name=prompt("Enter your last name:");
+        let full_name=first_name+" "+last_name;
+        confirm("is this your full name?"+full_name);
+        //7
+        let birth_year=prompt("Enter your birth year");
+        let current_year=new Date().getFullYear();
+        let age = current_year- birth_year;
+        document.write("<h3>welcome "+full_name+" you are "+age+" years old</h3>");
+        //8
+        alert("this is the first release of a calculator. only summation is available");
+        let num1=Number(prompt("Enter the first number:"));
+        let num2=Number(prompt("Enter the second number:"));
+        let result = num1+num2;
+        alert(num1+" + "+num2+" = "+result);
+        //9
+        let salary =5000;
+        console.log("type of salary:", typeof salary);
+        //bonus
+        let a =5;
+        let b =10;
+        console.log("before swap: a =",a,"b =",b);
+        a=a+b; //5+10=15
+        b=a-b; //15-10=5
+        a=a-b; //15-5=10
+        console.log("after swap: a =",a,"b =",b);
+
+
+    </script>
+</body>
+</html>

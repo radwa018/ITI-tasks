@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookies Library</title>
+</head>
+<body>
+  <h2>Cookie Library Example</h2>
+  <script>
+     //Set Cookie
+    function setCookie(name, value, days) {
+      let d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      let expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    //get cookie as array
+    function getCookies() {
+      let cookies = document.cookie.split("; ");
+      let cookieArray = [];
+      for (let c of cookies) {
+        let [key, value] = c.split("=");
+        cookieArray.push({ name: key, value: value });
+      }
+      return cookieArray;
+    }
+
+    //Check Cookie by Name
+    function checkCookie(name) {
+      let cookies = getCookies();
+      for (let c of cookies) {
+        if (c.name === name) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Example
+    setCookie("username", "Radwa", 7);
+    console.log(getCookies());
+    console.log(checkCookie("username")); // true
+  </script>
+</body>
+</html>

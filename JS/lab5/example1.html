@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .slider {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+      background: #000;
+    }
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .title {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .controls {
+      margin-top: 20px;
+    }
+    .controls button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .controls button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider">
+    <img id="slider-image" src="" alt="slider image">
+    <div class="title" id="slider-title"></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevImage()">Previous</button>
+    <button onclick="nextImage()">Next</button>
+    <button onclick="startSlider()">Play</button>
+    <button onclick="stopSlider()">Stop</button>
+    <button onclick="setSpeed(6000)">1x (6s)</button>
+    <button onclick="setSpeed(4000)">2x (4s)</button>
+    <button onclick="setSpeed(2000)">3x (2s)</button>
+  </div>
+
+  <script>
+    let images = [];
+    let currentIndex = 0;
+    let interval = null;
+    let speed = 4000; // default 4s
+
+    // Get images using XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://jsonplaceholder.typicode.com/albums/1/photos");
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        images = JSON.parse(xhr.responseText);
+        showImage(currentIndex);
+      }
+    };
+    xhr.send();
+
+    function showImage(index) {
+      if (images.length > 0) {
+        let img = document.getElementById("slider-image");
+        let title = document.getElementById("slider-title");
+        img.src = images[index].url;
+        title.textContent = images[index].title;
+      }
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+
+    function startSlider() {
+      if (!interval) {
+        interval = setInterval(nextImage, speed);
+      }
+    }
+
+    function stopSlider() {
+      clearInterval(interval);
+      interval = null;
+    }
+
+    function setSpeed(newSpeed) {
+      speed = newSpeed;
+      if (interval) {
+        stopSlider();
+        startSlider();
+      }
+    }
+  </script>
+
+</body>
+</html>
